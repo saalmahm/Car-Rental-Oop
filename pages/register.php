@@ -12,7 +12,7 @@
 <body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
 
     <!-- Header -->
-    <header class="fixed w-full top-0 z-50">
+    <header class="w-full">
         <div class="bg-white backdrop-blur-md bg-opacity-90">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="flex justify-between h-20">
@@ -28,7 +28,7 @@
     </header>
 
     <!-- Main Content -->
-    <main class="min-h-screen pt-32 pb-16 px-4">
+    <main class="px-4">
         <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
             <!-- Left Side - Welcome Message -->
             <div class="hidden md:block p-8">
@@ -51,8 +51,8 @@
             </div>
 
             <!-- Registration Form -->
-            <div class="w-full max-w-md mx-auto">
-                <div class="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+            <div class="w-full max-w-md mx-auto pt-4">
+                <div class="bg-white rounded-2xl shadow-lg p-4 border border-gray-100">
                     <div class="text-center mb-8">
                         <h2 class="text-3xl font-bold text-gray-800 mb-2">Create Account</h2>
                         <p class="text-gray-500">Start your journey with DriveEasy</p>
@@ -135,7 +135,7 @@
                             Create Account
                         </button>
 
-                        <div class="text-center mt-6">
+                        <div class="text-center mt-2">
                             <p class="text-gray-600 text-sm">
                                 Already have an account?
                                 <a href="#" class="text-emerald-600 hover:text-emerald-700 font-medium">Sign in</a>
