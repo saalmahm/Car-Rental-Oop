@@ -27,7 +27,6 @@
         </div>
     </header>
 
-
     <!-- Main Content -->
     <main class="min-h-screen pt-32 pb-16 px-4">
         <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
