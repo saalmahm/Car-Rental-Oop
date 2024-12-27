@@ -10,7 +10,7 @@ class User
     protected $role;
 
 
-    public function __construct($db, $id, $first_name, $last_name, $email, $role)
+    public function __construct(PDO $db, $id, $first_name, $last_name, $email, $role)
     {
         $this->db = $db;
         $this->id = $id;
@@ -30,7 +30,11 @@ class User
         return "$this->firstName $this->lastName";
     }
 
-    public function editInfo($id)
+    public function getRole(){
+        return $this->role;
+    }
+
+    public function editInfo($newFirstName, $newLastName)
     {
 
     }

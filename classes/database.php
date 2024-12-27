@@ -11,7 +11,7 @@ class DatabaseConnection
 
     public function __construct()
     {
-        $conn = new PDO("mysql:host=$this->dbHost;dbname=$this->dbName", $this->dbUser, $this->dbPass);
+        $this->conn = new PDO("mysql:host=$this->dbHost;dbname=$this->dbName", $this->dbUser, $this->dbPass);
     }
 
     public function getConnection()
