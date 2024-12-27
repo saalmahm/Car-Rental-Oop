@@ -12,7 +12,7 @@
 <body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
 
     <!-- Header -->
-    <header class="fixed w-full top-0 z-50">
+    <header class="w-full">
         <div class="bg-white backdrop-blur-md bg-opacity-90">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="flex justify-between h-20">
@@ -28,7 +28,7 @@
     </header>
 
     <!-- Main Content -->
-    <main class="min-h-screen pt-32 pb-16 px-4">
+    <main class="pt-24 px-4">
         <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
 
             <div class="hidden md:block p-8">

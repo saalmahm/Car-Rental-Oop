@@ -6,7 +6,7 @@ require_once 'contract.php';
 
 class Client extends User
 {
-    public function reserveCar(Contract $contract, $carId)
+    public function reserveCar(Contract $contract)
     {
 
     }
