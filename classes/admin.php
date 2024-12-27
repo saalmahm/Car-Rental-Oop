@@ -1,6 +1,8 @@
 <?php
 
 require_once 'user.php';
+require_once 'car.php';
+
 
 class Admin extends User
 {
@@ -10,11 +12,11 @@ class Admin extends User
     {
 
     }
-    public function addCar()
+    public function addCar(Car $car)
     {
 
     }
-    public function editCar($carId)
+    public function editCar(Car $car)
     {
 
     }
