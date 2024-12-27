@@ -14,8 +14,8 @@ class User
     {
         $this->db = $db;
         $this->id = $id;
-        $this->first_name = $first_name;
-        $this->last_name = $last_name;
+        $this->firstName = $first_name;
+        $this->lastName = $last_name;
         $this->email = $email;
         $this->role = $role;
     }

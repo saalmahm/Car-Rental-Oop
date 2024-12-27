@@ -5,7 +5,7 @@ class Car
     private $immatriculation;
     private $marque;
     private $model;
-    private $disponiblite;
+    private $disponibilite;
 
     public function __construct($immatriculation, $marque, $model, $disponibilite)
     {
@@ -21,7 +21,7 @@ class Car
             'immatriculation' => $this->immatriculation,
             'marque' => $this->marque,
             'model' => $this->model,
-            'disponiblite' => $this->disponiblite
+            'disponiblite' => $this->disponibilite
         ];
     }
 }
