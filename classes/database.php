@@ -6,7 +6,7 @@ class DatabaseConnection
     private $dbHost = "localhost";
     private $dbUser = "root";
     private $dbPass = $dbPassword;
-    private $dbName = "";
+    private $dbName = "gestion_location_oop";
     private $conn;
 
     public function __construct()
