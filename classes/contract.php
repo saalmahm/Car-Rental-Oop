@@ -7,10 +7,9 @@ class Contract
     private $carId;
     private $dateDebute;
     private $dateEnd;
-    
-    public function __construct($id, $clientId, $carId, $dateDebute, $dateEnd)
+
+    public function __construct( $clientId, $carId, $dateDebute, $dateEnd)
     {
-        $this->id = $id;
         $this->clientId = $clientId;
         $this->carId = $carId;
         $this->dateDebute = $dateDebute;

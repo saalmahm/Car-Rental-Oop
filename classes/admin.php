@@ -1,10 +1,10 @@
 <?php
 
-require_once 'user.php';
+require_once 'client.php';
 require_once 'car.php';
 
 
-class Admin extends User
+class Admin extends Client
 {
 
     //Car managment
@@ -35,7 +35,7 @@ class Admin extends User
 
     }
 
-    public function addAdmin($userId)
+    public function editAdmin($userId)
     {
 
     }
@@ -44,6 +44,14 @@ class Admin extends User
 
     public function listContracts()
     {
+
+    }
+
+    public function editContract($contractId, $newDate){
+
+    }
+
+    public function delContract($contractId){
 
     }
 }
