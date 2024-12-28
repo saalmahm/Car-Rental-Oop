@@ -19,7 +19,7 @@ class Authentication
             $stmt->bindParam(':email', $email);
             $stmt->execute();
 
-            if ($stmt->fetchColumn() > 0) {
+            if ($stmt->rowCount() > 0) {
                 return "This email is already registered.";
             }
             if ($password !== $confirmPassword) {

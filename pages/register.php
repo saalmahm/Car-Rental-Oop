@@ -57,11 +57,17 @@
                         <h2 class="text-3xl font-bold text-gray-800 mb-2">Create Account</h2>
                         <p class="text-gray-500">Start your journey with DriveEasy</p>
                     </div>
-                    <!-- <div class="text-center bg-red-50 text-red-600 text-sm p-2 rounded-lg mb-4">
-                        error message
-                    </div> -->
 
-                    <form action="#" method="POST" class="space-y-4">
+                    <?php
+                    if (isset($_SESSION['registerError'])) {
+                        ?>
+                        <div class="bg-red-50 text-red-500 text-sm p-4 rounded-lg mb-6">
+                            <?= $_SESSION['registerError'] ?>
+                        </div>
+                        <?php
+                        unset($_SESSION['registerError']);
+                    } ?>
+                    <form action="processes/register_process.php" method="POST" class="space-y-4">
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First
