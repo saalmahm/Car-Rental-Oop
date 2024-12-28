@@ -67,7 +67,7 @@ if (!$auth->isLoggedIn()) {
                                     class="text-gray-800 font-medium hover:text-emerald-600 transition-colors duration-300">Reservation</a>
                             </li>
                             <li>
-                                <a href="#"
+                                <a href="pages/reservations.php"
                                     class="text-gray-600 hover:text-emerald-600 transition-colors duration-300">Rental
                                     History</a>
                             </li>
