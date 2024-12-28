@@ -16,13 +16,7 @@ class Client extends User
             ':date_debute' => $contract->getAttributes()['dateDebute'],
             ':date_end' => $contract->getAttributes()['dateEnd']
         ]);
-        $stmt = $this->db->prepare("INSERT INTO contrats (id_user, id_voiture, date_debut , date_fin) VALUES (:client_id, :car_id, :date_debute, :date_end)");
-        $stmt->execute([
-            ':client_id' => $this->id,
-            ':car_id' => $contract->getAttributes()['carId'],
-            ':date_debute' => $contract->getAttributes()['dateDebute'],
-            ':date_end' => $contract->getAttributes()['dateEnd']
-        ]);
+
     }
 
     public function listDisponibleCars()
