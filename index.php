@@ -16,7 +16,7 @@
         <div class="bg-white backdrop-blur-md bg-opacity-90">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="flex justify-between h-20">
-                    <div class="flex items-center space-x-4">
+                    <div class="flex items-center">
                         <div
                             class="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-500 text-transparent bg-clip-text">
                             DriveEasy
@@ -24,10 +24,10 @@
                     </div>
 
                     <nav class="flex items-center">
-                        <ul class="hidden md:flex items-center space-x-8">
+                        <ul class="hidden md:flex items-center space-x-6">
                             <li>
                                 <a href="#"
-                                    class="text-gray-600 hover:text-emerald-600 transition-colors duration-300">Reservation</a>
+                                    class="text-gray-800 font-medium hover:text-emerald-600 transition-colors duration-300">Reservation</a>
                             </li>
                             <li>
                                 <a href="#"
