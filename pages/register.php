@@ -2,10 +2,10 @@
 session_start();
 require_once '../classes/database.php';
 require_once '../classes/authentification.php';
-$auth = New Authentication($db->getConnection());
+$auth = new Authentication($db->getConnection());
 
 if ($auth->isLoggedIn()) {
-    header('Location ../index.php');
+    header('Location: ../index.php');
     exit();
 }
 ?>
