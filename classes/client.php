@@ -16,7 +16,6 @@ class Client extends User
             ':date_debute' => $contract->getAttributes()['dateDebute'],
             ':date_end' => $contract->getAttributes()['dateEnd']
         ]);
-
     }
 
     public function listDisponibleCars()
