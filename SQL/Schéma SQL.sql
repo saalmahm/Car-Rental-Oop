@@ -8,6 +8,10 @@ CREATE TABLE user (
     password VARCHAR(255) NOT NULL,
     role ENUM('admin', 'employe') NOT NULL
 );
+
+ALTER TABLE user 
+MODIFY COLUMN role ENUM('admin', 'client') NOT NULL;
+
 -- Ajouter les colonnes firstName et lastName à la table user
 ALTER TABLE user
 ADD firstName VARCHAR(50),
@@ -38,4 +42,3 @@ CREATE TABLE contrats (
 INSERT INTO voiture (marque, modele, immatriculation, disponibilite) VALUES
  ('Toyota', 'Corolla', '1234-ABC', TRUE),
  ('BMW', 'X5', '5678-DEF', TRUE);
-
