@@ -1,11 +1,12 @@
 <?php
 session_start();
-require_once 'classes/database.php';
-require_once 'classes/authentification.php';
+require_once '../classes/database.php';
+require_once '../classes/authentification.php';
 $auth = New Authentication($db->getConnection());
 
 if ($auth->isLoggedIn()) {
     header('Location ../index.php');
+    exit();
 }
 ?>
 
