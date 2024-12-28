@@ -42,4 +42,3 @@ CREATE TABLE contrats (
 INSERT INTO voiture (marque, modele, immatriculation, disponibilite) VALUES
  ('Toyota', 'Corolla', '1234-ABC', TRUE),
  ('BMW', 'X5', '5678-DEF', TRUE);
-
