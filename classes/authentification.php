@@ -14,7 +14,7 @@ class Authentication
 
         try {
 
-            $query = "SELECT * FROM users WHERE email = :email";
+            $query = "SELECT * FROM user WHERE email = :email";
             $stmt = $this->db->prepare($query);
             $stmt->bindParam(':email', $email);
             $stmt->execute();
@@ -28,7 +28,7 @@ class Authentication
 
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $query = "INSERT INTO users (firstName, lastName, email, password, role) VALUES (:firstName, :lastName, :email, :password, :role)";
+            $query = "INSERT INTO user (firstName, lastName, email, password, role) VALUES (:firstName, :lastName, :email, :password, :role)";
             $stmt = $this->db->prepare($query);
             $stmt->bindParam(':firstName', $firstName);
             $stmt->bindParam(':lastName', $lastName);
@@ -59,7 +59,7 @@ class Authentication
     {
         try {
 
-            $query = "SELECT * FROM Users WHERE email = :email";
+            $query = "SELECT * FROM user WHERE email = :email";
             $stmt = $this->db->prepare($query);
             $stmt->bindParam(":email", $email);
             $stmt->execute();
@@ -78,7 +78,6 @@ class Authentication
 
             return true;
 
-
         } catch (PDOException $e) {
             return "Error: " . $e->getMessage();
         }
@@ -95,7 +94,6 @@ class Authentication
     public function isLoggedIn()
     {
         return isset($_SESSION['userId']);
-
     }
 
     public function isAdmin()
