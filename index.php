@@ -90,7 +90,7 @@ if (!$auth->isLoggedIn()) {
                                         <?php
                                     }
                                     ?>
-                                    <a href="#"
+                                    <a href="pages/processes/logout.php"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-red-700">logout</a>
                                 </div>
                             </li>

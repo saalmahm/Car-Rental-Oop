@@ -19,13 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
 
             $_SESSION['loginError'] = $status;
-            header('Location: ../register.php');
+            header('Location: ../login.php');
             exit();
         }
 
     } else {
         $_SESSION['loginError'] = 'All fields are required';
-        header('Location: ../register.php');
+        header('Location: ../login.php');
         exit();
     }
 
