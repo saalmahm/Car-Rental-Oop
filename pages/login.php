@@ -53,12 +53,15 @@
             <!-- Login Form -->
             <div class="w-full max-w-md mx-auto">
                 <div class="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-                    <div class="text-center mb-8">
+                    <div class="text-center mb-6">
                         <h2 class="text-3xl font-bold text-gray-800 mb-2">Sign In</h2>
                         <p class="text-gray-500">Access your DriveEasy account</p>
                     </div>
+                    <div class="text-center bg-red-50 text-red-600 text-sm p-2 rounded-lg mb-6">
+                        error message
+                    </div>
 
-                    <form action="#" method="POST" class="space-y-6">
+                    <form action="processes/login_process.php" method="POST" class="space-y-6">
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email
                                 address</label>
@@ -99,8 +102,8 @@
                         <div class="text-center mt-6">
                             <p class="text-gray-600 text-sm">
                                 Don't have an account?
-                                <a href="#" class="text-emerald-600 hover:text-emerald-700 font-medium">Create
-                                    account</a>
+                                <a href="register.php" class="text-emerald-600 hover:text-emerald-700 font-medium">
+                                    Create account</a>
                             </p>
                         </div>
                     </form>

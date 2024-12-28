@@ -51,14 +51,17 @@
             </div>
 
             <!-- Registration Form -->
-            <div class="w-full max-w-md mx-auto pt-4">
+            <div class="w-full max-w-md mx-auto pt-6">
                 <div class="bg-white rounded-2xl shadow-lg p-4 border border-gray-100">
-                    <div class="text-center mb-8">
+                    <div class="text-center mb-6">
                         <h2 class="text-3xl font-bold text-gray-800 mb-2">Create Account</h2>
                         <p class="text-gray-500">Start your journey with DriveEasy</p>
                     </div>
+                    <!-- <div class="text-center bg-red-50 text-red-600 text-sm p-2 rounded-lg mb-4">
+                        error message
+                    </div> -->
 
-                    <form action="#" method="POST" class="space-y-6">
+                    <form action="#" method="POST" class="space-y-4">
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First
@@ -138,7 +141,8 @@
                         <div class="text-center mt-2">
                             <p class="text-gray-600 text-sm">
                                 Already have an account?
-                                <a href="#" class="text-emerald-600 hover:text-emerald-700 font-medium">Sign in</a>
+                                <a href="login.php" class="text-emerald-600 hover:text-emerald-700 font-medium">Sign
+                                    in</a>
                             </p>
                         </div>
                     </form>

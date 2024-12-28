@@ -39,7 +39,7 @@ class User
         $this->firstName = $newFirstName;
         $this->lastName = $newLastName;
 
-        $stmt = $this->db->prepare("UPDATE users SET first_name = :first_name, last_name = :last_name WHERE id = :id");
+        $stmt = $this->db->prepare("UPDATE user SET firstName = :first_name, lastName = :last_name WHERE id = :id");
         $stmt->execute([
             ':first_name' => $newFirstName,
             ':last_name' => $newLastName,
