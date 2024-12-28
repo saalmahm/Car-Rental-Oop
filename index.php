@@ -33,6 +33,7 @@ if (!$auth->isLoggedIn()) {
     }
 }
 
+$cars = [];
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +49,6 @@ if (!$auth->isLoggedIn()) {
 
 <body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
 
-    <!-- Header -->
     <header class="w-full">
         <div class="bg-white backdrop-blur-md bg-opacity-90">
             <div class="max-w-7xl mx-auto px-6">
@@ -86,7 +86,8 @@ if (!$auth->isLoggedIn()) {
                                     if ($user->getRole() == 'admin') {
                                         ?>
                                         <a href="#"
-                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-700">Admin Dashboard</a>
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-700">Admin
+                                            Dashboard</a>
                                         <?php
                                     }
                                     ?>
@@ -101,9 +102,6 @@ if (!$auth->isLoggedIn()) {
         </div>
     </header>
 
-
-
-    <!-- Hero Section -->
     <section class="py-12 px-4">
         <div class="max-w-7xl mx-auto text-center">
             <h1 class="text-4xl font-bold text-gray-800 mb-4">Available Cars for Reservation</h1>
@@ -113,113 +111,50 @@ if (!$auth->isLoggedIn()) {
         </div>
     </section>
 
-    <!-- Car Listing -->
+    <!-- Car List -->
     <main class="px-4 pb-12">
         <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                <!-- Car Card 1 -->
-                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-800">BMW</h3>
-                            <p class="text-gray-600">X5</p>
+            <?php
+            if (!empty($cars)) {
+                ?>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <?php
+                    foreach ($cars as $car) {
+                        ?>
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                            <div class="space-y-4">
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-800"><?= $car['marque'] ?></h3>
+                                    <p class="text-gray-600"><?= $car['modele'] ?></p>
+                                </div>
+                                <div class="text-sm text-gray-500">
+                                    Registration: <?= $car['immatriculation'] ?>
+                                </div>
+                                <button
+                                    class="w-full bg-gradient-to-r from-emerald-600 to-teal-500 text-white px-4 py-2 rounded-lg hover:from-emerald-700 hover:to-teal-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transform transition-all duration-300 hover:scale-[1.02]">
+                                    Reserve Now
+                                </button>
+                            </div>
                         </div>
-                        <div class="text-sm text-gray-500">
-                            Registration: ABC-123
-                        </div>
-                        <button
-                            class="w-full bg-gradient-to-r from-emerald-600 to-teal-500 text-white px-4 py-2 rounded-lg hover:from-emerald-700 hover:to-teal-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transform transition-all duration-300 hover:scale-[1.02]">
-                            Reserve Now
-                        </button>
-                    </div>
+                        <?php
+                    }
+                    ?>
                 </div>
 
-                <!-- Car Card 2 -->
-                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-800">Mercedes-Benz</h3>
-                            <p class="text-gray-600">C-Class</p>
-                        </div>
-                        <div class="text-sm text-gray-500">
-                            Registration: XYZ-789
-                        </div>
-                        <button
-                            class="w-full bg-gradient-to-r from-emerald-600 to-teal-500 text-white px-4 py-2 rounded-lg hover:from-emerald-700 hover:to-teal-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transform transition-all duration-300 hover:scale-[1.02]">
-                            Reserve Now
-                        </button>
+                <?php
+            } else {
+                ?>
+                <div class="text-center py-16">
+                    <div class="max-w-md mx-auto">
+                        <i class="fas fa-car text-gray-400 text-5xl mb-4"></i>
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-2">No Cars Available</h2>
+                        <p class="text-gray-600 mb-8">We currently don't have any cars available for reservation. Please
+                            check back later or contact our support team for assistance.</p>
                     </div>
                 </div>
-
-                <!-- Car Card 3 -->
-                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-800">Audi</h3>
-                            <p class="text-gray-600">A4</p>
-                        </div>
-                        <div class="text-sm text-gray-500">
-                            Registration: DEF-456
-                        </div>
-                        <button
-                            class="w-full bg-gradient-to-r from-emerald-600 to-teal-500 text-white px-4 py-2 rounded-lg hover:from-emerald-700 hover:to-teal-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transform transition-all duration-300 hover:scale-[1.02]">
-                            Reserve Now
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Car Card 4 -->
-                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-800">Volkswagen</h3>
-                            <p class="text-gray-600">Golf</p>
-                        </div>
-                        <div class="text-sm text-gray-500">
-                            Registration: GHI-789
-                        </div>
-                        <button
-                            class="w-full bg-gradient-to-r from-emerald-600 to-teal-500 text-white px-4 py-2 rounded-lg hover:from-emerald-700 hover:to-teal-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transform transition-all duration-300 hover:scale-[1.02]">
-                            Reserve Now
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Car Card 5 -->
-                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-800">Toyota</h3>
-                            <p class="text-gray-600">Camry</p>
-                        </div>
-                        <div class="text-sm text-gray-500">
-                            Registration: JKL-012
-                        </div>
-                        <button
-                            class="w-full bg-gradient-to-r from-emerald-600 to-teal-500 text-white px-4 py-2 rounded-lg hover:from-emerald-700 hover:to-teal-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transform transition-all duration-300 hover:scale-[1.02]">
-                            Reserve Now
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Car Card 6 -->
-                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-800">Honda</h3>
-                            <p class="text-gray-600">Civic</p>
-                        </div>
-                        <div class="text-sm text-gray-500">
-                            Registration: MNO-345
-                        </div>
-                        <button
-                            class="w-full bg-gradient-to-r from-emerald-600 to-teal-500 text-white px-4 py-2 rounded-lg hover:from-emerald-700 hover:to-teal-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transform transition-all duration-300 hover:scale-[1.02]">
-                            Reserve Now
-                        </button>
-                    </div>
-                </div>
-            </div>
+                <?php
+            }
+            ?>
         </div>
     </main>
     <script src="menu.js"></script>
