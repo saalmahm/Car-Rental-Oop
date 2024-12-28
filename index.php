@@ -33,7 +33,7 @@ if (!$auth->isLoggedIn()) {
     }
 }
 
-$cars = [];
+$cars = $user->listDisponibleCars();
 ?>
 
 <!DOCTYPE html>
