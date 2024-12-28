@@ -1,3 +1,14 @@
+<?php
+session_start();
+require_once 'classes/database.php';
+require_once 'classes/authentification.php';
+$auth = New Authentication($db->getConnection());
+
+if ($auth->isLoggedIn()) {
+    header('Location ../index.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,7 +72,7 @@
                     <?php
                     if (isset($_SESSION['registerError'])) {
                         ?>
-                        <div class="bg-red-50 text-red-500 text-sm p-4 rounded-lg mb-6">
+                        <div class="text-center bg-red-50 text-red-500 text-sm p-4 rounded-lg mb-6">
                             <?= $_SESSION['registerError'] ?>
                         </div>
                         <?php
