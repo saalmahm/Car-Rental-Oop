@@ -1,3 +1,14 @@
+<?php
+session_start();
+require_once 'classes/database.php';
+require_once 'classes/authentification.php';
+$auth = New Authentication($db->getConnection());
+
+if ($auth->isLoggedIn()) {
+    header('Location ../index.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,9 +68,16 @@
                         <h2 class="text-3xl font-bold text-gray-800 mb-2">Sign In</h2>
                         <p class="text-gray-500">Access your DriveEasy account</p>
                     </div>
-                    <div class="text-center bg-red-50 text-red-600 text-sm p-2 rounded-lg mb-6">
-                        error message
-                    </div>
+
+                    <?php
+                    if (isset($_SESSION['loginError'])) {
+                        ?>
+                        <div class="text-center bg-red-50 text-red-500 text-sm p-4 rounded-lg mb-6">
+                            <?= $_SESSION['loginError'] ?>
+                        </div>
+                        <?php
+                        unset($_SESSION['loginError']);
+                    } ?>
 
                     <form action="processes/login_process.php" method="POST" class="space-y-6">
                         <div>
