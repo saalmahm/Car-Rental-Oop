@@ -1,3 +1,40 @@
+<?php
+session_start();
+require_once 'classes/database.php';
+require_once 'classes/authentification.php';
+require_once 'classes/admin.php';
+require_once 'classes/client.php';
+
+$auth = new Authentication($db->getConnection());
+
+if (!$auth->isLoggedIn()) {
+    header('Location: pages/login.php');
+    exit();
+} else {
+
+    if ($auth->isAdmin()) {
+        $user = new Admin(
+            $db->getConnection(),
+            $_SESSION['userId'],
+            $_SESSION['firstName'],
+            $_SESSION['lastName'],
+            $_SESSION['email'],
+            $_SESSION['role']
+        );
+    } else {
+        $user = new Client(
+            $db->getConnection(),
+            $_SESSION['userId'],
+            $_SESSION['firstName'],
+            $_SESSION['lastName'],
+            $_SESSION['email'],
+            $_SESSION['role']
+        );
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,19 +68,28 @@
                             </li>
                             <li>
                                 <a href="#"
-                                    class="text-gray-600 hover:text-emerald-600 transition-colors duration-300">Rental History</a>
+                                    class="text-gray-600 hover:text-emerald-600 transition-colors duration-300">Rental
+                                    History</a>
                             </li>
                             <li class="relative">
                                 <button id="dropdownButton"
                                     class="flex items-center space-x-2 bg-emerald-50 text-emerald-700 px-4 py-2 rounded-full hover:bg-emerald-100 transition-colors duration-300">
                                     <i class="fas fa-user-circle text-lg"></i>
-                                    <span>FirstName LastName</span>
+                                    <span><?= $user->getFullName(); ?></span>
                                     <i class="fas fa-chevron-down text-sm"></i>
                                 </button>
                                 <div id="dropdownMenu"
                                     class="hidden w-full absolute mt-2 bg-white rounded-xl shadow-lg py-2 border border-gray-100">
                                     <a href="#"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-700">Profile</a>
+                                    <?php
+                                    if ($user->getRole() == 'admin') {
+                                        ?>
+                                        <a href="#"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-700">Admin Dashboard</a>
+                                        <?php
+                                    }
+                                    ?>
                                     <a href="#"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-red-700">logout</a>
                                 </div>
