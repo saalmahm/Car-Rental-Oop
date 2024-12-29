@@ -313,6 +313,7 @@ $contracts = $admin->listContracts();
             </div>
         </section>
 
+        <!-- manage contrats -->
         <section id="manageContracts" class="hidden contentSection flex-1 flex-col overflow-hidden">
             <div class="bg-white shadow-sm">
                 <div class="px-6 py-4">
