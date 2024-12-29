@@ -23,14 +23,19 @@ class Client extends User
         $stmt = $this->db->prepare("SELECT * FROM voiture WHERE disponibilite = 1"); // 1 pour disponible
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-       
+
     }
 
     public function contractsHistory()
     {
-        $stmt = $this->db->prepare("SELECT * FROM contrats WHERE id_user = :client_id");
+        $stmt = $this->db->prepare("
+        SELECT c.id AS contract_id, v.marque, v.modele, c.date_debut, c.date_fin
+        FROM contrats c
+        JOIN voiture v ON c.id_voiture = v.id
+        WHERE c.id_user = :client_id
+    ");
         $stmt->execute([':client_id' => $this->id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
     }
+
 }
