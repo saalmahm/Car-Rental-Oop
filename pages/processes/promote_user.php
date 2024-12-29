@@ -28,9 +28,9 @@ if (!$auth->isAdmin()) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['user_id'])) {
-
+        
         $user_id = $_POST['user_id'];
-        $admin->delUser($user_id);
+        $admin->setAdmin($user_id);
         header('Location: ../dashboard.php');
         exit();
     }
