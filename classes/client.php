@@ -3,7 +3,6 @@
 require_once 'user.php';
 require_once 'contract.php';
 require_once 'car.php';
-require_once 'car.php';
 
 class Client extends User
 {
@@ -16,6 +15,9 @@ class Client extends User
             ':date_debute' => $contract->getAttributes()['dateDebute'],
             ':date_end' => $contract->getAttributes()['dateEnd']
         ]);
+
+        $stmt = $this->db->prepare("UPDATE voiture SET disponibilite = false WHERE id = :car_id");
+        $stmt->execute([':car_id' => $contract->getAttributes()['carId']]);
     }
 
     public function listDisponibleCars()
