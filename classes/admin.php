@@ -90,7 +90,17 @@ class Admin extends Client
 
     public function delContract($contractId)
     {
-        $stmt = $this->db->prepare("DELETE FROM contrats WHERE id = :contractId");
+        $stmt = $this->db->prepare("SELECT id_voiture FROM contrats WHERE id = :contractId");
         $stmt->execute([':contractId' => $contractId]);
+        $carId = $stmt->fetchColumn();
+
+        if ($carId) {
+
+            $stmt = $this->db->prepare("DELETE FROM contrats WHERE id = :contractId");
+            $stmt->execute([':contractId' => $contractId]);
+
+            $stmt = $this->db->prepare("UPDATE voiture SET disponibilite = 1 WHERE id = :carId");
+            $stmt->execute([':carId' => $carId]);
+        }
     }
 }
