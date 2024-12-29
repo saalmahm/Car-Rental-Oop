@@ -8,7 +8,7 @@ class Car
     private $modele;
     private $disponibilite;
 
-    public function __construct($immatriculation, $marque, $modele, $disponibilite)
+    public function __construct($immatriculation, $marque, $modele, $disponibilite = true)
     {
         $this->immatriculation = $immatriculation;
         $this->marque = $marque;
@@ -16,10 +16,15 @@ class Car
         $this->disponibilite = $disponibilite;
     }
 
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
     public function getAttributes()
     {
         return [
-            "id"=> $this->id,
+            "id" => $this->id,
             'immatriculation' => $this->immatriculation,
             'marque' => $this->marque,
             'modele' => $this->modele,
