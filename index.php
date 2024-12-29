@@ -80,17 +80,13 @@ $cars = $user->listDisponibleCars();
                                 </button>
                                 <div id="dropdownMenu"
                                     class="hidden w-full absolute mt-2 bg-white rounded-xl shadow-lg py-2 border border-gray-100">
-                                    <a href="#"
+                                    <a href="pages/profile.php"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-700">Profile</a>
-                                    <?php
-                                    if ($user->getRole() == 'admin') {
-                                        ?>
-                                        <a href="#"
+                                    <?php if ($user->getRole() == 'admin') { ?>
+                                        <a href="pages/dashboard.php"
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-700">Admin
                                             Dashboard</a>
-                                        <?php
-                                    }
-                                    ?>
+                                    <?php } ?>
                                     <a href="pages/processes/logout.php"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-red-700">logout</a>
                                 </div>
@@ -130,7 +126,8 @@ $cars = $user->listDisponibleCars();
                                 <div class="text-sm text-gray-500">
                                     Registration: <?= $car['immatriculation'] ?>
                                 </div>
-                                <button data-car-id="<?= $car['id'] ?>" data-brand="<?= $car['marque'] ?>" data-model="<?= $car['modele'] ?>"
+                                <button data-car-id="<?= $car['id'] ?>" data-brand="<?= $car['marque'] ?>"
+                                    data-model="<?= $car['modele'] ?>"
                                     class="reserve-btn w-full bg-gradient-to-r from-emerald-600 to-teal-500 text-white px-4 py-2 rounded-lg hover:from-emerald-700 hover:to-teal-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transform transition-all duration-300 hover:scale-[1.02]">
                                     Reserve Now
                                 </button>
