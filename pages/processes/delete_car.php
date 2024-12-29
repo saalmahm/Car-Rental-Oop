@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once '../classes/database.php';
-require_once '../classes/authentification.php';
-require_once '../classes/admin.php';
+require_once '../../classes/database.php';
+require_once '../../classes/authentification.php';
+require_once '../../classes/admin.php';
 
 $auth = new Authentication($db->getConnection());
 
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['car_id'])) {
 
         $car_id = $_POST['car_id'];
-        $admin->delUser($car_id);
+        $admin->delCar($car_id);
         header('Location: ../dashboard.php');
         exit();
     }

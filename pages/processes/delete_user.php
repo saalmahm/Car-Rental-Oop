@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once '../classes/database.php';
-require_once '../classes/authentification.php';
-require_once '../classes/admin.php';
+require_once '../../classes/database.php';
+require_once '../../classes/authentification.php';
+require_once '../../classes/admin.php';
 
 $auth = new Authentication($db->getConnection());
 

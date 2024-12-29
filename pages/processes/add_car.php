@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once '../classes/database.php';
-require_once '../classes/authentification.php';
-require_once '../classes/admin.php';
-require_once '../classes/car.php';
+require_once '../../classes/database.php';
+require_once '../../classes/authentification.php';
+require_once '../../classes/admin.php';
+require_once '../../classes/car.php';
 
 
 $auth = new Authentication($db->getConnection());
@@ -38,7 +38,7 @@ if (isset($_POST['registration'], $_POST['brand'], $_POST['model'])) {
     $car = new Car($registration, $brand, $model, $disponibilite);
     $admin->addCar($car);
 
-    header('Location: dashboard.php');
+    header('Location: ../dashboard.php');
     exit();
 
 } else {
