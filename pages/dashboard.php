@@ -122,6 +122,7 @@ $contracts = $admin->listContracts();
             </div>
         </aside>
 
+        <!-- overview -->
         <section id="overview" class="contentSection flex-1 flex flex-col overflow-hidden">
             <div class="bg-white shadow-sm">
                 <div class="px-6 py-4">
@@ -130,7 +131,77 @@ $contracts = $admin->listContracts();
             </div>
 
             <div class="flex-1 overflow-auto p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                    <!-- num users -->
+                    <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-emerald-500">
+                        <div class="flex flex-col">
+                            <span class="text-sm font-medium text-gray-600">Total Users</span>
+                            <div class="flex items-center space-x-3 mt-2">
+                                <span class="text-2xl font-bold text-gray-800"><?= "20" ?></span>
+                                <i class="fas fa-users text-emerald-500"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- num admins -->
+                    <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-teal-500">
+                        <div class="flex flex-col">
+                            <span class="text-sm font-medium text-gray-600">Total Admins</span>
+                            <div class="flex items-center space-x-3 mt-2">
+                                <span class="text-2xl font-bold text-gray-800"><?= "5" ?></span>
+                                <i class="fas fa-user-shield text-teal-500"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- num voiture -->
+                    <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-emerald-500">
+                        <div class="flex flex-col">
+                            <span class="text-sm font-medium text-gray-600">Total Cars</span>
+                            <div class="flex items-center space-x-3 mt-2">
+                                <span class="text-2xl font-bold text-gray-800"><?= "8" ?></span>
+                                <i class="fas fa-car text-emerald-500"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- num disponible voiture -->
+                    <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-teal-500">
+                        <div class="flex flex-col">
+                            <span class="text-sm font-medium text-gray-600">Available Cars</span>
+                            <div class="flex items-center space-x-3 mt-2">
+                                <span class="text-2xl font-bold text-gray-800"><?= '9' ?></span>
+                                <i class="fas fa-car-side text-teal-500"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- num contracts -->
+                    <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-emerald-500">
+                        <div class="flex flex-col">
+                            <span class="text-sm font-medium text-gray-600">Total Contracts</span>
+                            <div class="flex items-center space-x-3 mt-2">
+                                <span class="text-2xl font-bold text-gray-800"><?= '80' ?></span>
+                                <i class="fas fa-file-contract text-emerald-500"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- num Contracts -->
+                    <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-teal-500">
+                        <div class="flex flex-col">
+                            <span class="text-sm font-medium text-gray-600">Active Contracts</span>
+                            <div class="flex items-center space-x-3 mt-2">
+                                <span class="text-2xl font-bold text-gray-800"><?= "6" ?></span>
+                                <i class="fas fa-clock text-teal-500"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Welcome Card -->
                 <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-2">Welcome to DriveEasy Dashboard</h2>
                     <p class="text-gray-600">Select a section from the sidebar to manage your application.</p>
                 </div>
             </div>
