@@ -23,8 +23,21 @@ $cars = $admin->listCars();
 $contracts = $admin->listContracts();
 // Récupérer le nombre total de contrats
 $totalContracts = count($admin->listContracts());
-?>
+// Récupérer le nombre total d'utilisateurs
+$totalUsers = count($users);  
 
+// Récupérer le nombre total d'administrateurs
+$totalAdmins = 0;
+foreach ($users as $user) {
+    if ($user['role'] === 'admin') {
+        $totalAdmins++;
+    }
+}
+// Récupérer le nombre total de voitures
+$totalCars = count($cars);
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -135,37 +148,40 @@ $totalContracts = count($admin->listContracts());
             <div class="flex-1 overflow-auto p-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                     <!-- num users -->
-                    <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-emerald-500">
-                        <div class="flex flex-col">
-                            <span class="text-sm font-medium text-gray-600">Total Users</span>
-                            <div class="flex items-center space-x-3 mt-2">
-                                <span class="text-2xl font-bold text-gray-800"><?= "20" ?></span>
-                                <i class="fas fa-users text-emerald-500"></i>
-                            </div>
-                        </div>
-                    </div>
+<div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-emerald-500">
+    <div class="flex flex-col">
+        <span class="text-sm font-medium text-gray-600">Total Users</span>
+        <div class="flex items-center space-x-3 mt-2">
+            <span class="text-2xl font-bold text-gray-800"><?= $totalUsers ?></span>
+            <i class="fas fa-users text-emerald-500"></i>
+        </div>
+    </div>
+</div>
+
 
                     <!-- num admins -->
                     <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-teal-500">
-                        <div class="flex flex-col">
-                            <span class="text-sm font-medium text-gray-600">Total Admins</span>
-                            <div class="flex items-center space-x-3 mt-2">
-                                <span class="text-2xl font-bold text-gray-800"><?= "5" ?></span>
-                                <i class="fas fa-user-shield text-teal-500"></i>
-                            </div>
-                        </div>
-                    </div>
+    <div class="flex flex-col">
+        <span class="text-sm font-medium text-gray-600">Total Admins</span>
+        <div class="flex items-center space-x-3 mt-2">
+            <span class="text-2xl font-bold text-gray-800"><?= $totalAdmins ?></span>
+            <i class="fas fa-user-shield text-teal-500"></i>
+        </div>
+    </div>
+</div>
+
 
                     <!-- num voiture -->
                     <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-emerald-500">
-                        <div class="flex flex-col">
-                            <span class="text-sm font-medium text-gray-600">Total Cars</span>
-                            <div class="flex items-center space-x-3 mt-2">
-                                <span class="text-2xl font-bold text-gray-800"><?= "8" ?></span>
-                                <i class="fas fa-car text-emerald-500"></i>
-                            </div>
-                        </div>
-                    </div>
+    <div class="flex flex-col">
+        <span class="text-sm font-medium text-gray-600">Total Cars</span>
+        <div class="flex items-center space-x-3 mt-2">
+            <span class="text-2xl font-bold text-gray-800"><?= $totalCars ?></span>
+            <i class="fas fa-car text-emerald-500"></i>
+        </div>
+    </div>
+</div>
+
 
                     <!-- num disponible voiture -->
                     <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-teal-500">
