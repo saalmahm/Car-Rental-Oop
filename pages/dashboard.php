@@ -19,6 +19,7 @@ if (!$auth->isAdmin()) {
     );
 }
 $users = $admin->listUsers();
+$cars = $admin->listCars();
 ?>
 
 <!DOCTYPE html>
@@ -93,13 +94,13 @@ $users = $admin->listUsers();
                 <div class="flex-1 py-4" id="sideBar">
                     <div class="px-4 space-y-1">
                         <button data-section="overview"
-                            class="w-full flex items-center px-4 py-3 text-gray-700 bg-emerald-50 rounded-lg">
-                            <i class="fas fa-chart-line w-5 h-5 text-emerald-500"></i>
+                            class="w-full flex items-center px-4 py-3 text-gray-600 hover:bg-emerald-50 rounded-lg">
+                            <i class="fas fa-chart-line w-5 h-5"></i>
                             <span class="mx-4 font-medium">Overview</span>
                         </button>
 
                         <button data-section="manageUsers"
-                            class="w-full flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors duration-200">
+                            class="w-full flex items-center px-4 py-3 text-gray-600 hover:bg-emerald-50 rounded-lg transition-colors duration-200">
                             <i class="fas fa-users w-5 h-5"></i>
                             <span class="mx-4 font-medium">Manage Users</span>
                         </button>
@@ -134,6 +135,8 @@ $users = $admin->listUsers();
             </div>
         </section>
 
+
+        <!-- manage users -->
         <section id="manageUsers" class="hidden contentSection flex-1 flex-col overflow-hidden">
             <div class="bg-white shadow-sm">
                 <div class="px-6 py-4">
@@ -143,55 +146,56 @@ $users = $admin->listUsers();
 
             <div class="flex-1 overflow-auto p-6">
                 <div class="bg-white rounded-xl shadow-sm">
-                    <div class="overflow-x-auto">
-                        <table class="w-full">
-                            <thead>
-                                <tr class="bg-gray-50">
-                                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">First Name</th>
-                                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">Last Name</th>
-                                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">Email</th>
-                                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">Role</th>
-                                    <th class="px-6 py-4 text-right text-sm font-semibold text-gray-600">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-100">
+                    <?php if (!empty($users)) { ?>
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead>
+                                    <tr class="bg-gray-50">
+                                        <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">First Name</th>
+                                        <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">Last Name</th>
+                                        <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">Email</th>
+                                        <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">Role</th>
+                                        <th class="px-6 py-4 text-right text-sm font-semibold text-gray-600">Actions</th>
+                                    </tr>
+                                </thead>
 
-                                <?php foreach ($users as $user) { ?>
-                                    <tr
-                                        class="hover:bg-gradient-to-r hover:from-emerald-50 hover:to-transparent transition-all duration-300 border-l-4 border-transparent hover:border-emerald-500">
-                                        <td class="px-6 py-4 text-sm text-gray-800 font-medium"><?= $user['firstName'] ?>
-                                        </td>
-                                        <td class="px-6 py-4 text-sm text-gray-800"><?= $user['lastName'] ?></td>
-                                        <td class="px-6 py-4 text-sm text-gray-600"><?= $user['email'] ?></td>
-                                        <td class="px-6 py-4 text-sm">
-                                            <span
-                                                class="inline-flex items-center px-3 py-1 text-sm rounded-full <?= $user['role'] === 'admin' ? 'bg-gradient-to-r from-emerald-50 to-teal-50 text-emerald-700' : 'bg-gray-100 text-gray-700' ?>">
-                                                <?= ucfirst($user['role']) ?>
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 text-right space-x-3">
-                                            <?php if ($user['role'] !== 'admin') { ?>
-                                                <form action="processes/promote_user.php" method="POST" class="inline">
+                                <tbody>
+                                    <?php foreach ($users as $user) { ?>
+                                        <tr
+                                            class="hover:bg-gradient-to-r hover:from-emerald-50 hover:to-transparent transition-all duration-300 border-l-4 border-transparent hover:border-emerald-500">
+                                            <td class="px-6 py-4 text-sm text-gray-800 font-medium"><?= $user['firstName'] ?>
+                                            </td>
+                                            <td class="px-6 py-4 text-sm text-gray-800"><?= $user['lastName'] ?></td>
+                                            <td class="px-6 py-4 text-sm text-gray-600"><?= $user['email'] ?></td>
+                                            <td class="px-6 py-4 text-sm">
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 text-sm rounded-full <?= $user['role'] === 'admin' ? 'bg-gradient-to-r from-emerald-50 to-teal-50 text-emerald-700' : 'bg-gray-100 text-gray-700' ?>">
+                                                    <?= ucfirst($user['role']) ?>
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 text-right space-x-3">
+                                                <?php if ($user['role'] !== 'admin') { ?>
+                                                    <form action="processes/promote_user.php" method="POST" class="inline">
+                                                        <button type="submit" name="user_id" value="<?= $user['id'] ?>"
+                                                            class="px-4 py-1.5 text-sm bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-lg hover:from-emerald-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow">
+                                                            Promote to Admin
+                                                        </button>
+                                                    </form>
+                                                <?php } ?>
+                                                <form action="processes/delete_user.php" method="POST" class="inline">
                                                     <button type="submit" name="user_id" value="<?= $user['id'] ?>"
-                                                        class="px-4 py-1.5 text-sm bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-lg hover:from-emerald-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow">
-                                                        Promote to Admin
+                                                        class="px-4 py-1.5 text-sm bg-white border border-red-200 text-red-600 rounded-lg hover:bg-red-50 transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow">
+                                                        Delete
                                                     </button>
                                                 </form>
-                                            <?php } ?>
-                                            <form action="processes/delete_user.php" method="POST" class="inline">
-                                                <button type="submit" name="user_id" value="<?= $user['id'] ?>"
-                                                    class="px-4 py-1.5 text-sm bg-white border border-red-200 text-red-600 rounded-lg hover:bg-red-50 transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow">
-                                                    Delete
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-                    </div>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
 
-                    <?php if (empty($users)) { ?>
+                    <?php } else { ?>
                         <div class="text-center py-16">
                             <div class="max-w-md mx-auto">
                                 <i class="fas fa-users text-gray-400 text-5xl mb-4"></i>
@@ -204,6 +208,109 @@ $users = $admin->listUsers();
             </div>
         </section>
 
+        <!-- manage cars -->
+        <section id="manageCars" class="hidden contentSection flex-1 flex-col overflow-hidden">
+            <div class="bg-white shadow-sm">
+                <div class="px-6 py-4">
+                    <h1 class="text-2xl font-semibold text-gray-800">Manage Cars</h1>
+                </div>
+            </div>
+
+            <div class="flex-1 overflow-auto p-6 space-y-6">
+                <!-- add form -->
+                <div class="bg-white rounded-xl shadow-sm">
+                    <div class="border-b border-gray-100">
+                        <div class="px-6 py-4">
+                            <h2 class="text-lg font-semibold text-gray-800">Add New Car</h2>
+                        </div>
+                    </div>
+
+                    <div class="p-4">
+                        <form action="processes/add_car.php" method="POST"
+                            class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="flex flex-col">
+                                <label for="registration" class="text-sm font-medium text-gray-700">Registration
+                                    Number</label>
+                                <input type="text" name="registration" id="registration" required
+                                    class="mt-1 p-2 w-full rounded-lg border-gray-200 bg-gray-100 focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
+                            </div>
+
+                            <div class="flex flex-col">
+                                <label for="brand" class="text-sm font-medium text-gray-700">Brand</label>
+                                <input type="text" name="brand" id="brand" required
+                                    class="mt-1 p-2 w-full rounded-lg border-gray-200 bg-gray-100 focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
+                            </div>
+
+                            <div class="flex flex-col">
+                                <label for="model" class="text-sm font-medium text-gray-700">Model</label>
+                                <input type="text" name="model" id="model" required
+                                    class="mt-1 p-2 w-full rounded-lg border-gray-200 bg-gray-100 focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
+                            </div>
+
+                            <div class="md:col-span-3 flex justify-end">
+                                <button type="submit"
+                                    class="px-6 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-lg hover:from-emerald-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow">
+                                    Add Car
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Cars List -->
+                <div class="bg-white rounded-xl shadow-sm">
+                    <?php if (!empty($cars)) { ?>
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead>
+                                    <tr class="bg-gray-50">
+                                        <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">Brand</th>
+                                        <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">Model</th>
+                                        <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">Registration
+                                        </th>
+                                        <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">Availability
+                                        </th>
+                                        <th class="px-6 py-4 text-right text-sm font-semibold text-gray-600">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($cars as $car) { ?>
+                                        <tr
+                                            class="hover:bg-gradient-to-r hover:from-emerald-50 hover:to-transparent transition-all duration-300 border-l-4 border-transparent hover:border-emerald-500">
+                                            <td class="px-6 py-4 text-sm text-gray-800"><?= $car['marque'] ?></td>
+                                            <td class="px-6 py-4 text-sm text-gray-800"><?= $car['modele'] ?></td>
+                                            <td class="px-6 py-4 text-sm text-gray-600"><?= $car['immatriculation'] ?></td>
+                                            <td class="px-6 py-4 text-sm">
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 text-sm rounded-full <?= $car['disponibilite'] ? 'bg-gradient-to-r from-emerald-50 to-teal-50 text-emerald-700' : 'bg-red-50 text-red-700' ?>">
+                                                    <?= $car['disponibilite'] ? 'Available' : 'Rented' ?>
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 text-right">
+                                                <form action="processes/delete_car.php" method="POST" class="inline">
+                                                    <button type="submit" name="car_id" value="<?= $car['id'] ?>"
+                                                        class="px-4 py-1.5 text-sm bg-white border border-red-200 text-red-600 rounded-lg hover:bg-red-50 transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow">
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    <?php } else { ?>
+                        <div class="text-center py-16">
+                            <div class="max-w-md mx-auto">
+                                <i class="fas fa-car text-gray-400 text-5xl mb-4"></i>
+                                <h2 class="text-2xl font-semibold text-gray-800 mb-2">No Cars Found</h2>
+                                <p class="text-gray-600">There are currently no cars in the system.</p>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </section>
     </main>
 
     <script src="dashboard.js"></script>
