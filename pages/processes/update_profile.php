@@ -27,6 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $lastName = trim($_POST['lastName']);
 
         $user->editInfo($firstName, $lastName);
+        $_SESSION['firstName'] = $firstName;
+        $_SESSION['lastName'] = $lastName;
+
         header('Location: ../profile.php');
         exit();
     }
