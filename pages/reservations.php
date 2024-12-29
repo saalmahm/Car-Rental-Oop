@@ -32,6 +32,7 @@ if (!$auth->isLoggedIn()) {
         );
     }
 }
+$contracts = $user->contractsHistory();
 
 ?>
 
@@ -47,7 +48,7 @@ if (!$auth->isLoggedIn()) {
 </head>
 
 <body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
-    <!-- Header -->
+
     <header class="w-full">
         <div class="bg-white backdrop-blur-md bg-opacity-90">
             <div class="max-w-7xl mx-auto px-6">
@@ -97,7 +98,6 @@ if (!$auth->isLoggedIn()) {
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="py-12 px-4">
         <div class="max-w-7xl mx-auto text-center">
             <h1 class="text-4xl font-bold text-gray-800 mb-4">Your Rental History</h1>
@@ -107,52 +107,60 @@ if (!$auth->isLoggedIn()) {
         </div>
     </section>
 
-    <!-- Rental History Table -->
+    <!-- contracts history -->
     <main class="px-4 pb-12">
         <div class="max-w-7xl mx-auto">
-            <!-- Table Section -->
-            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                <div class="overflow-x-auto">
-                    <table class="w-full">
-                        <thead>
-                            <tr class="bg-gray-50">
-                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">Brand</th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">Model</th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">Start Date</th>
-                                <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">End Date</th>
-                            </tr>
-                        </thead>
-                        <tbody class="">
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4 text-sm text-gray-800">BMW</td>
-                                <td class="px-6 py-4 text-sm text-gray-800">X5</td>
-                                <td class="px-6 py-4 text-sm text-gray-600">2024-01-15</td>
-                                <td class="px-6 py-4 text-sm text-gray-600">2024-01-20</td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4 text-sm text-gray-800">Mercedes-Benz</td>
-                                <td class="px-6 py-4 text-sm text-gray-800">C-Class</td>
-                                <td class="px-6 py-4 text-sm text-gray-600">2024-02-01</td>
-                                <td class="px-6 py-4 text-sm text-gray-600">2024-02-05</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <?php
+            if (!empty($contracts)) {
+                ?>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="overflow-x-auto">
 
-            <!-- No Reservations Section (Hidden by default) -->
-            <div class="hidden text-center py-16">
-                <div class="max-w-md mx-auto">
-                    <i class="fas fa-calendar-times text-gray-400 text-5xl mb-4"></i>
-                    <h2 class="text-2xl font-semibold text-gray-800 mb-2">No Reservations Yet</h2>
-                    <p class="text-gray-600 mb-8">You haven't made any reservations with us yet. Start your journey with
-                        DriveEasy today!</p>
-                    <a href="../index.php"
-                        class="inline-block bg-gradient-to-r from-emerald-600 to-teal-500 text-white px-6 py-3 rounded-lg hover:from-emerald-700 hover:to-teal-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transform transition-all duration-300 hover:scale-[1.02]">
-                        Make Your First Reservation
-                    </a>
+                        <table class="w-full">
+                            <thead>
+                                <tr class="bg-gray-50">
+                                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">Brand</th>
+                                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">Model</th>
+                                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">Start Date</th>
+                                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">End Date</th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="divide-y divide-gray-100">
+                                <?php
+                                foreach ($contracts as $contract) {
+                                    ?>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 text-sm text-gray-800"><?= $contract['marque'] ?></td>
+                                        <td class="px-6 py-4 text-sm text-gray-800"><?= $contract['model'] ?></td>
+                                        <td class="px-6 py-4 text-sm text-gray-600"><?= $contract['date_debut'] ?></td>
+                                        <td class="px-6 py-4 text-sm text-gray-600"><?= $contract['date_fin'] ?></td>
+                                    </tr>
+                                    <?php
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
+                <?php
+            } else {
+                ?>
+                <div class="text-center py-16">
+                    <div class="max-w-md mx-auto">
+                        <i class="fas fa-calendar-times text-gray-400 text-5xl mb-4"></i>
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-2">No Reservations Yet</h2>
+                        <p class="text-gray-600 mb-8">You haven't made any reservations with us yet. Start your journey with
+                            DriveEasy today!</p>
+                        <a href="../index.php"
+                            class="inline-block bg-gradient-to-r from-emerald-600 to-teal-500 text-white px-6 py-3 rounded-lg hover:from-emerald-700 hover:to-teal-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transform transition-all duration-300 hover:scale-[1.02]">
+                            Make Your First Reservation
+                        </a>
+                    </div>
+                </div>
+                <?php
+            }
+            ?>
         </div>
     </main>
 
