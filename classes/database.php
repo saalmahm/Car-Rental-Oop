@@ -28,4 +28,4 @@ class DatabaseConnection
     }
 }
 
-$db = new DatabaseConnection("$dbPassword");
+$db = new DatabaseConnection($dbPassword);

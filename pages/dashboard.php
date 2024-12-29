@@ -21,6 +21,8 @@ if (!$auth->isAdmin()) {
 $users = $admin->listUsers();
 $cars = $admin->listCars();
 $contracts = $admin->listContracts();
+// Récupérer le nombre total de contrats
+$totalContracts = count($admin->listContracts());
 ?>
 
 <!DOCTYPE html>
@@ -178,14 +180,14 @@ $contracts = $admin->listContracts();
 
                     <!-- num contracts -->
                     <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-emerald-500">
-                        <div class="flex flex-col">
-                            <span class="text-sm font-medium text-gray-600">Total Contracts</span>
-                            <div class="flex items-center space-x-3 mt-2">
-                                <span class="text-2xl font-bold text-gray-800"><?= '80' ?></span>
-                                <i class="fas fa-file-contract text-emerald-500"></i>
-                            </div>
-                        </div>
-                    </div>
+    <div class="flex flex-col">
+        <span class="text-sm font-medium text-gray-600">Total Contracts</span>
+        <div class="flex items-center space-x-3 mt-2">
+            <span class="text-2xl font-bold text-gray-800"><?= $totalContracts ?></span>
+            <i class="fas fa-file-contract text-emerald-500"></i>
+        </div>
+    </div>
+</div>
 
                     <!-- num Contracts -->
                     <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-teal-500">
