@@ -20,6 +20,7 @@ if (!$auth->isAdmin()) {
 }
 $users = $admin->listUsers();
 $cars = $admin->listCars();
+$contracts = $admin->listContracts();
 ?>
 
 <!DOCTYPE html>
@@ -66,9 +67,9 @@ $cars = $admin->listCars();
                                 <div id="dropdownMenu"
                                     class="hidden w-full absolute mt-2 bg-white rounded-xl shadow-lg py-2 border border-gray-100">
                                     <a href="profile.php"
-                                        class="block px-4 py-2 text-sm text-gray-800 font-medium hover:bg-emerald-50 hover:text-emerald-700">Profile</a>
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-700">Profile</a>
                                     <a href="#"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-700">Admin
+                                        class="block px-4 py-2 text-sm  text-gray-800 font-medium  hover:bg-emerald-50 hover:text-emerald-700">Admin
                                         Dashboard</a>
 
                                     <a href="processes/logout.php"
@@ -305,6 +306,75 @@ $cars = $admin->listCars();
                                 <i class="fas fa-car text-gray-400 text-5xl mb-4"></i>
                                 <h2 class="text-2xl font-semibold text-gray-800 mb-2">No Cars Found</h2>
                                 <p class="text-gray-600">There are currently no cars in the system.</p>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </section>
+
+        <section id="manageContracts" class="hidden contentSection flex-1 flex-col overflow-hidden">
+            <div class="bg-white shadow-sm">
+                <div class="px-6 py-4">
+                    <h1 class="text-2xl font-semibold text-gray-800">Manage Contracts</h1>
+                </div>
+            </div>
+
+            <div class="flex-1 overflow-auto p-6">
+                <div class="bg-white rounded-xl shadow-sm">
+                    <?php if (!empty($contracts)) { ?>
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead>
+                                    <tr class="bg-gray-50">
+                                        <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">Owner</th>
+                                        <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">Car Details</th>
+                                        <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">Start Date</th>
+                                        <th class="px-6 py-4 text-left text-sm font-semibold text-gray-600">End Date</th>
+                                        <th class="px-6 py-4 text-right text-sm font-semibold text-gray-600">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($contracts as $contract) { ?>
+                                        <tr
+                                            class="hover:bg-gradient-to-r hover:from-emerald-50 hover:to-transparent transition-all duration-300 border-l-4 border-transparent hover:border-emerald-500">
+                                            <td class="px-6 py-4">
+                                                <div class="text-sm text-gray-800 font-medium">
+                                                    <?= "{$contract['firstName']}  {$contract['lastName']}" ?>
+                                                </div>
+                                                <div class="text-sm text-gray-600"><?= $contract['email'] ?></div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="text-sm text-gray-800">
+                                                    <?= "{$contract['marque']}  {$contract['modele']}" ?>
+                                                </div>
+                                                <div class="text-sm text-gray-600"><?= $contract['immatriculation'] ?></div>
+                                            </td>
+                                            <td class="px-6 py-4 text-sm text-gray-600"><?= $contract['date_debut'] ?></td>
+                                            <td class="px-6 py-4 text-sm text-gray-600"><?= $contract['date_fin'] ?></td>
+                                            <td class="px-6 py-4 text-right space-x-3">
+                                                <button
+                                                    class="px-4 py-1.5 text-sm bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-lg hover:from-emerald-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow">
+                                                    Edit
+                                                </button>
+                                                <form action="processes/delete_contract.php" method="POST" class="inline">
+                                                    <button type="submit" name="contract_id" value="<?= $contract['id'] ?>"
+                                                        class="px-4 py-1.5 text-sm bg-white border border-red-200 text-red-600 rounded-lg hover:bg-red-50 transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow">
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    <?php } else { ?>
+                        <div class="text-center py-16">
+                            <div class="max-w-md mx-auto">
+                                <i class="fas fa-file-contract text-gray-400 text-5xl mb-4"></i>
+                                <h2 class="text-2xl font-semibold text-gray-800 mb-2">No Contracts Found</h2>
+                                <p class="text-gray-600">There are currently no rental contracts in the system.</p>
                             </div>
                         </div>
                     <?php } ?>
