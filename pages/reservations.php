@@ -80,13 +80,13 @@ $contracts = $user->contractsHistory();
                                 </button>
                                 <div id="dropdownMenu"
                                     class="hidden w-full absolute mt-2 bg-white rounded-xl shadow-lg py-2 border border-gray-100">
-                                    <a href="#"
+                                    <a href="profile.php"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-700">Profile</a>
-                                    <?php if ($user->getRole() == 'admin'): ?>
-                                        <a href="#"
+                                    <?php if ($user->getRole() == 'admin') { ?>
+                                        <a href="dashboard.php"
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-700">Admin
                                             Dashboard</a>
-                                    <?php endif; ?>
+                                    <?php } ?>
                                     <a href="processes/logout.php"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-red-700">logout</a>
                                 </div>
