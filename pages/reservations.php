@@ -132,7 +132,7 @@ $contracts = $user->contractsHistory();
                                     ?>
                                     <tr class="hover:bg-gray-50">
                                         <td class="px-6 py-4 text-sm text-gray-800"><?= $contract['marque'] ?></td>
-                                        <td class="px-6 py-4 text-sm text-gray-800"><?= $contract['model'] ?></td>
+                                        <td class="px-6 py-4 text-sm text-gray-800"><?= $contract['modele'] ?></td>
                                         <td class="px-6 py-4 text-sm text-gray-600"><?= $contract['date_debut'] ?></td>
                                         <td class="px-6 py-4 text-sm text-gray-600"><?= $contract['date_fin'] ?></td>
                                     </tr>

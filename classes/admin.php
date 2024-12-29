@@ -21,7 +21,7 @@ class Admin extends Client
         $stmt->execute([
             ':immatriculation' => $attributes['immatriculation'],
             ':marque' => $attributes['marque'],
-            ':modele' => $attributes['modele'],  
+            ':modele' => $attributes['modele'],
             ':disponibilite' => $attributes['disponibilite']
         ]);
     }
@@ -69,7 +69,12 @@ class Admin extends Client
 
     public function listContracts()
     {
-        $stmt = $this->db->prepare("SELECT * FROM contrats");
+        $query = " SELECT contrats.*, firstName, lastName, email, marque, modele, immatriculation
+        FROM contrats
+        JOIN user ON contrats.id_user = user.id
+        JOIN voiture ON contrats.id_voiture = voiture.id";
+
+        $stmt = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
