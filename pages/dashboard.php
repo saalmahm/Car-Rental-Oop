@@ -446,6 +446,7 @@ $totalCars = count($cars);
                                                 <button data-owner="<?= "{$contract['firstName']} {$contract['lastName']}" ?>"
                                                     data-brand="<?= "{$contract['marque']}" ?>"
                                                     data-model="<?= "{$contract['modele']}" ?>"
+                                                    data-contract-id="<?= "{$contract['id']}" ?>"
                                                     class="editContractBtn px-4 py-1.5 text-sm bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-lg hover:from-emerald-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow">
                                                     Edit
                                                 </button>
@@ -509,9 +510,9 @@ $totalCars = count($cars);
                                         </div>
 
                                         <div>
-                                            <label for="endDate" class="block text-sm font-medium text-gray-700 mb-2">
+                                            <label for="NewEndDate" class="block text-sm font-medium text-gray-700 mb-2">
                                                 Enter New End Date</label>
-                                            <input type="date" id="endDate" name="endDate" required
+                                            <input type="date" id="NewEndDate" name="NewEndDate" required
                                                 class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300">
                                         </div>
 
@@ -543,5 +544,3 @@ $totalCars = count($cars);
 </body>
 
 </html>
-
-</body></html>

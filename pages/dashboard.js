@@ -25,6 +25,8 @@ const closeEditContract = document.querySelector('#closeEditContract');
 const ownerInput = document.querySelector('#owner');
 const brandInput =  document.querySelector('#carBrand');
 const modelInput =  document.querySelector('#carModel');
+const submitEditContractBtn = document.querySelector('#submitContractEdit')
+
 
 
 editContractBtn.forEach(btn => {
@@ -35,6 +37,9 @@ editContractBtn.forEach(btn => {
         ownerInput.value = btn.dataset.owner;
         brandInput.value = btn.dataset.brand;
         modelInput.value = btn.dataset.model;
+
+        submitEditContractBtn.name = 'contractId';
+        submitEditContractBtn.value = btn.dataset.contractId;
 
     });
 });
