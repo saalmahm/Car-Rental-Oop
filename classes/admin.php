@@ -81,7 +81,7 @@ class Admin extends Client
 
     public function editContract($contractId, $newDate)
     {
-        $stmt = $this->db->prepare("UPDATE contrats SET date_debut = :newDate WHERE id = :contractId");
+        $stmt = $this->db->prepare("UPDATE contrats SET date_fin = :newDate WHERE id = :contractId");
         $stmt->execute([
             ':newDate' => $newDate,
             ':contractId' => $contractId

@@ -27,7 +27,7 @@ if (!$auth->isAdmin()) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['contractId'], $_POST['NewEndDate'])) {
+    if (isset($_POST['contractId']) && isset($_POST['NewEndDate'])) {
         
         $contract_id = $_POST['contractId'];
         $newEndDate = $_POST['NewEndDate'];
