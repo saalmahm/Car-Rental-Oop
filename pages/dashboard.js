@@ -1,17 +1,11 @@
 const sideBar = document.querySelector('#sideBar');
-console.log(sideBar)
 const sideSelections = sideBar.querySelectorAll('button');
-console.log(sideSelections);
-
 const contentSections = document.querySelectorAll('.contentSection');
-
-// console.log(sideSelections);
 
 sideSelections.forEach(choice => {
     choice.addEventListener('click', () => {
 
         const sectionId = choice.dataset.section;
-        console.log(sectionId);
 
         contentSections.forEach(section => {
             section.classList.add('hidden');
@@ -23,4 +17,29 @@ sideSelections.forEach(choice => {
         selectedSection.classList.add('flex');
 
     });
+});
+
+const editContractBtn = document.querySelectorAll('.editContractBtn');
+const editContractPopup = document.querySelector('#editContractPopup');
+const closeEditContract = document.querySelector('#closeEditContract');
+const ownerInput = document.querySelector('#owner');
+const brandInput =  document.querySelector('#carBrand');
+const modelInput =  document.querySelector('#carModel');
+
+
+editContractBtn.forEach(btn => {
+    btn.addEventListener('click', () => {
+        editContractPopup.classList.remove('hidden');
+        editContractPopup.classList.add('flex');
+
+        ownerInput.value = btn.dataset.owner;
+        brandInput.value = btn.dataset.brand;
+        modelInput.value = btn.dataset.model;
+
+    });
+});
+
+closeEditContract.addEventListener('click', () => {
+    editContractPopup.classList.add('hidden');
+    editContractPopup.classList.remove('flex');
 });

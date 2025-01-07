@@ -24,7 +24,7 @@ $contracts = $admin->listContracts();
 // Récupérer le nombre total de contrats
 $totalContracts = count($admin->listContracts());
 // Récupérer le nombre total d'utilisateurs
-$totalUsers = count($users);  
+$totalUsers = count($users);
 
 // Récupérer le nombre total d'administrateurs
 $totalAdmins = 0;
@@ -148,39 +148,39 @@ $totalCars = count($cars);
             <div class="flex-1 overflow-auto p-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                     <!-- num users -->
-<div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-emerald-500">
-    <div class="flex flex-col">
-        <span class="text-sm font-medium text-gray-600">Total Users</span>
-        <div class="flex items-center space-x-3 mt-2">
-            <span class="text-2xl font-bold text-gray-800"><?= $totalUsers ?></span>
-            <i class="fas fa-users text-emerald-500"></i>
-        </div>
-    </div>
-</div>
+                    <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-emerald-500">
+                        <div class="flex flex-col">
+                            <span class="text-sm font-medium text-gray-600">Total Users</span>
+                            <div class="flex items-center space-x-3 mt-2">
+                                <span class="text-2xl font-bold text-gray-800"><?= $totalUsers ?></span>
+                                <i class="fas fa-users text-emerald-500"></i>
+                            </div>
+                        </div>
+                    </div>
 
 
                     <!-- num admins -->
                     <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-teal-500">
-    <div class="flex flex-col">
-        <span class="text-sm font-medium text-gray-600">Total Admins</span>
-        <div class="flex items-center space-x-3 mt-2">
-            <span class="text-2xl font-bold text-gray-800"><?= $totalAdmins ?></span>
-            <i class="fas fa-user-shield text-teal-500"></i>
-        </div>
-    </div>
-</div>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-medium text-gray-600">Total Admins</span>
+                            <div class="flex items-center space-x-3 mt-2">
+                                <span class="text-2xl font-bold text-gray-800"><?= $totalAdmins ?></span>
+                                <i class="fas fa-user-shield text-teal-500"></i>
+                            </div>
+                        </div>
+                    </div>
 
 
                     <!-- num voiture -->
                     <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-emerald-500">
-    <div class="flex flex-col">
-        <span class="text-sm font-medium text-gray-600">Total Cars</span>
-        <div class="flex items-center space-x-3 mt-2">
-            <span class="text-2xl font-bold text-gray-800"><?= $totalCars ?></span>
-            <i class="fas fa-car text-emerald-500"></i>
-        </div>
-    </div>
-</div>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-medium text-gray-600">Total Cars</span>
+                            <div class="flex items-center space-x-3 mt-2">
+                                <span class="text-2xl font-bold text-gray-800"><?= $totalCars ?></span>
+                                <i class="fas fa-car text-emerald-500"></i>
+                            </div>
+                        </div>
+                    </div>
 
 
                     <!-- num disponible voiture -->
@@ -196,14 +196,14 @@ $totalCars = count($cars);
 
                     <!-- num contracts -->
                     <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-emerald-500">
-    <div class="flex flex-col">
-        <span class="text-sm font-medium text-gray-600">Total Contracts</span>
-        <div class="flex items-center space-x-3 mt-2">
-            <span class="text-2xl font-bold text-gray-800"><?= $totalContracts ?></span>
-            <i class="fas fa-file-contract text-emerald-500"></i>
-        </div>
-    </div>
-</div>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-medium text-gray-600">Total Contracts</span>
+                            <div class="flex items-center space-x-3 mt-2">
+                                <span class="text-2xl font-bold text-gray-800"><?= $totalContracts ?></span>
+                                <i class="fas fa-file-contract text-emerald-500"></i>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- num Contracts -->
                     <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-teal-500">
@@ -443,8 +443,10 @@ $totalCars = count($cars);
                                             <td class="px-6 py-4 text-sm text-gray-600"><?= $contract['date_debut'] ?></td>
                                             <td class="px-6 py-4 text-sm text-gray-600"><?= $contract['date_fin'] ?></td>
                                             <td class="px-6 py-4 text-right space-x-3">
-                                                <button
-                                                    class="px-4 py-1.5 text-sm bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-lg hover:from-emerald-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow">
+                                                <button data-owner="<?= "{$contract['firstName']} {$contract['lastName']}" ?>"
+                                                    data-brand="<?= "{$contract['marque']}" ?>"
+                                                    data-model="<?= "{$contract['modele']}" ?>"
+                                                    class="editContractBtn px-4 py-1.5 text-sm bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-lg hover:from-emerald-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow">
                                                     Edit
                                                 </button>
                                                 <form action="processes/delete_contract.php" method="POST" class="inline">
@@ -459,6 +461,69 @@ $totalCars = count($cars);
                                 </tbody>
                             </table>
                         </div>
+
+
+                        <div id="editContractPopup"
+                            class="hidden fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50">
+
+                            <div class="bg-white rounded-xl shadow-lg max-w-md w-full mx-4 overflow-hidden">
+
+                                <div
+                                    class="flex bg-gray-50 px-6 py-4 border-b border-gray-100 justify-between items-center">
+                                    <h3 class="text-xl font-semibold text-gray-800">Edit Contract</h3>
+                                    <button id="closeEditContract"
+                                        class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                                        <i class="fas fa-times text-lg"></i>
+                                    </button>
+                                </div>
+
+                                <div class="p-6">
+                                    <form id="editContractForm" method="POST" action="processes/edit_contract.php"
+                                        class="space-y-4">
+                                        <div>
+                                            <label for="owner"
+                                                class="block text-sm font-medium text-gray-700 mb-2">Owner</label>
+                                            <input type="text" id="owner" name="owner" readonly
+                                                class="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-200 text-gray-500 cursor-not-allowed"
+                                                placeholder="Contract Owner">
+                                        </div>
+
+                                        <div class="flex gap-2">
+                                            <div>
+                                                <label for="carBrand"
+                                                    class="block text-sm font-medium text-gray-700 mb-2">Car
+                                                    Brand</label>
+                                                <input type="text" id="carBrand" name="carBrand" readonly
+                                                    class="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-200 text-gray-500 cursor-not-allowed"
+                                                    placeholder="Car Brand">
+                                            </div>
+
+                                            <div>
+                                                <label for="carModel"
+                                                    class="block text-sm font-medium text-gray-700 mb-2">Car
+                                                    Model</label>
+                                                <input type="text" id="carModel" name="carModel" readonly
+                                                    class="w-full px-4 py-3 rounded-lg bg-gray-100 border border-gray-200 text-gray-500 cursor-not-allowed"
+                                                    placeholder="Car Model">
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label for="endDate" class="block text-sm font-medium text-gray-700 mb-2">
+                                                Enter New End Date</label>
+                                            <input type="date" id="endDate" name="endDate" required
+                                                class="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-200 focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300">
+                                        </div>
+
+                                        <button type="submit" id="submitContractEdit"
+                                            class="w-full bg-gradient-to-r from-emerald-600 to-teal-500 text-white px-6 py-3 rounded-lg hover:from-emerald-700 hover:to-teal-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transform transition-all duration-300 hover:scale-[1.02]">
+                                            Confirm Reservation
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
                     <?php } else { ?>
                         <div class="text-center py-16">
                             <div class="max-w-md mx-auto">
@@ -479,6 +544,4 @@ $totalCars = count($cars);
 
 </html>
 
-</body>
-
-</html>
+</body></html>
