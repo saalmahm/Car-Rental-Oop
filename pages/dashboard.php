@@ -36,6 +36,13 @@ foreach ($users as $user) {
 // Récupérer le nombre total de voitures
 $totalCars = count($cars);
 
+$totalAvailableCars = 0;
+foreach ($cars as $car) {
+    if ($car['disponibilite'] === 1) {
+        $totalAvailableCars++;
+    }
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -188,7 +195,7 @@ $totalCars = count($cars);
                         <div class="flex flex-col">
                             <span class="text-sm font-medium text-gray-600">Available Cars</span>
                             <div class="flex items-center space-x-3 mt-2">
-                                <span class="text-2xl font-bold text-gray-800"><?= '9' ?></span>
+                                <span class="text-2xl font-bold text-gray-800"><?= $totalAvailableCars ?></span>
                                 <i class="fas fa-car-side text-teal-500"></i>
                             </div>
                         </div>
